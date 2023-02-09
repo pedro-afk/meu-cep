@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Meu CEP</string>
+    <string name="hintTextFieldCep">Digite o CEP</string>
+    <string name="textButtonBuscarCep">Buscar CEP</string>
+    <string name="labelCep">CEP:</string>
+    <string name="labelLogradouro">LOGRADOURO:</string>
+    <string name="labelComplemento">COMPLEMENTO:</string>
+    <string name="labelBairro">BAIRRO:</string>
+    <string name="labelLocalidade">LOCALIDADE:</string>
+    <string name="labelUf">UF:</string>
+    <string name="labelIbge">IBGE:</string>
+    <string name="labelGia">GIA:</string>
+    <string name="labelDDD">DDD:</string>
+    <string name="labelSiafi">SIAFI:</string>
+    <string name="textViewTitleInfoCep">Informações do CEP</string>
+    <string name="carregando">Carregando...</string>
+</resources>
