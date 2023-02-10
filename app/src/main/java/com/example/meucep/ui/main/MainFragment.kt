@@ -1,12 +1,13 @@
 package com.example.meucep.ui.main
 
-import android.app.AlertDialog
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.lifecycle.ViewModelProvider
 import com.example.meucep.data.ClientService
 import com.example.meucep.databinding.FragmentMainBinding
@@ -28,6 +29,8 @@ class MainFragment : Fragment() {
         viewModel = ViewModelProvider(
             this,
             MainViewModel.MainViewModelFatory(ClientService()))[MainViewModel::class.java]
+
+        binding.progressBar.visibility = ProgressBar.INVISIBLE
 
         stateObserver()
         binding.buttonSearchCep.setOnClickListener { getCep() }
@@ -70,13 +73,26 @@ class MainFragment : Fragment() {
     private fun stateObserver() {
 
         viewModel.getState().observe(viewLifecycleOwner) {
-            // TODO implements Alert Dialog
             when (it) {
-                MainViewModel.State.LOADING -> Snackbar.make(binding.root.context, binding.root, "Carregando CEP...", Snackbar.LENGTH_SHORT).show()
-                MainViewModel.State.DONE -> Snackbar.make(binding.root.context, binding.root, "CEP carregado com sucesso!", Snackbar.LENGTH_SHORT).show()
-                MainViewModel.State.ERROR -> Snackbar.make(binding.root.context, binding.root, "Erro ao carregar CEP!", Snackbar.LENGTH_SHORT).show()
+                MainViewModel.State.LOADING -> {
+                    binding.progressBar.isIndeterminate = true
+                    binding.progressBar.visibility = ProgressBar.VISIBLE
+                }
+                MainViewModel.State.DONE -> {
+                    Snackbar.make(binding.root.context, binding.root, "CEP carregado com sucesso!", Snackbar.LENGTH_SHORT).show()
+                    setProgressInvisibleAndGone()
+                }
+                MainViewModel.State.ERROR -> {
+                    Snackbar.make(binding.root.context, binding.root, "Erro ao carregar CEP!", Snackbar.LENGTH_SHORT).show()
+                    setProgressInvisibleAndGone()
+                }
                 else -> Log.d("@GET CEP", "Idle")
             }
         }
+    }
+
+    private fun setProgressInvisibleAndGone() {
+        binding.progressBar.visibility = ProgressBar.GONE
+        binding.progressBar.visibility = ProgressBar.INVISIBLE
     }
 }
