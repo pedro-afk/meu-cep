@@ -4,5 +4,5 @@
 - Retrofit para consumir WebAPIs.
 - Coroutines para execução de código de forma assíncrona.
 - ViewBinding para facilitar as interações com a view.
-- LiveData para notificar os observers e atualizar o estado do app.
+- LiveData para notificar os observers e atualizar os estados da UI.
 - ViewModel para separar as regras da UI.
